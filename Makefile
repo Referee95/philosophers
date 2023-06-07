@@ -6,17 +6,17 @@
 #    By: ykhalil- <ykhalil-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 10:54:36 by ykhalil-          #+#    #+#              #
-#    Updated: 2023/05/05 11:36:14 by ykhalil-         ###   ########.fr        #
+#    Updated: 2023/06/07 19:28:51 by ykhalil-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PROGRAM = philo
 
-SRCS = utils.c \
+SRCS = routine.c utils.c utils2.c \
 
 CC= gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 
 OBJS = ${SRCS:.c=.o}
 

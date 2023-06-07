@@ -6,12 +6,11 @@
 /*   By: ykhalil- <ykhalil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:06:19 by ykhalil-          #+#    #+#             */
-/*   Updated: 2023/05/25 16:00:38 by ykhalil-         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:27:26 by ykhalil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <limits.h>
 
 int	ft_atoi(char *str)
 {
@@ -32,11 +31,15 @@ int	ft_atoi(char *str)
 
 void	my_sleep(long time)
 {
-	long	time_now;
+	long long	start;
 
-	time_now = ft_time(0) + time;
-	while (ft_time(0) < time_now)
-		usleep(200);
+	start = ft_time(0);
+	while (1)
+	{
+		if (ft_time(0) - start >= time)
+			break ;
+		usleep(85);
+	}
 }
 
 long	ft_time(long time)
@@ -45,4 +48,14 @@ long	ft_time(long time)
 
 	gettimeofday(&tv, NULL);
 	return (((tv.tv_sec * 1000) + (tv.tv_usec / 1000)) - time);
+}
+
+void	ft_print(char *msg, t_philo *philo)
+{
+	if (!read_valu(&philo->info->status, &philo->info->death))
+	{
+		pthread_mutex_lock(&philo->info->print);
+		printf("%ld %d %s\n", ft_time(philo->info->start_time), philo->id, msg);
+		pthread_mutex_unlock(&philo->info->print);
+	}
 }
