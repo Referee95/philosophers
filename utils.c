@@ -29,13 +29,15 @@ int	ft_atoi(char *str)
 	return (n);
 }
 
-void	my_sleep(long time)
+void	my_sleep(long time, t_philo *philo)
 {
 	long long	start;
 
 	start = ft_time(0);
 	while (1)
 	{
+		if (read_valu(&philo->info->status, &philo->info->death))
+			break ;
 		if (ft_time(0) - start >= time)
 			break ;
 		usleep(85);

@@ -6,7 +6,7 @@
 /*   By: ykhalil- <ykhalil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 10:55:20 by ykhalil-          #+#    #+#             */
-/*   Updated: 2023/06/07 19:29:25 by ykhalil-         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:28:31 by ykhalil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	creat_philo(t_thread *args, t_philo *philo)
 		philo[i].nbr_eat = 0;
 		pthread_mutex_init(&args->fork[i], NULL);
 		pthread_mutex_init(&philo[i].eat, NULL);
-		philo[i].lst_eat = args->start_time;
+		philo[i].lst_eat = ft_time(philo->info->start_time);
 		i++;
 	}
 	pthread_mutex_init(&philo->info->print, NULL);
@@ -95,11 +95,15 @@ int	main(int ac, char **av)
 		if (!philo)
 			return (1);
 		if (creat_philo(&args, philo))
+		{
+			free(philo);
 			return (1);
+		}
 		if (creat_tread(philo))
+		{
+			free_all(philo);
 			return (1);
+		}
 		free_all(philo);
-		free(philo);
-		free(args.fork);
 	}
 }

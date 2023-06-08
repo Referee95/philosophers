@@ -49,7 +49,7 @@ int					ft_check(char **av, int ac, t_thread *args);
 int					creat_philo(t_thread *args, t_philo *philo);
 int					creat_tread(t_philo *philo);
 long				ft_time(long time);
-void				my_sleep(long time);
+void				my_sleep(long time, t_philo *philo);
 void				*routine(void *arg);
 void				res_fork(t_philo *philo);
 void				philo_think(t_philo *philo);

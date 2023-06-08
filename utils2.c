@@ -6,7 +6,7 @@
 /*   By: ykhalil- <ykhalil-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 19:23:28 by ykhalil-          #+#    #+#             */
-/*   Updated: 2023/06/07 19:27:03 by ykhalil-         ###   ########.fr       */
+/*   Updated: 2023/06/08 13:33:07 by ykhalil-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	free_all(t_philo *philo)
 	}
 	pthread_mutex_destroy(&philo->info->print);
 	pthread_mutex_destroy(&philo->info->death);
+	free(philo->info->fork);
+	free(philo);
 }
 
 long	read_valu(long *value, pthread_mutex_t *mtx)
@@ -78,11 +80,10 @@ int	is_died(t_philo *philo)
 		i = -1;
 		while (++i < philo->info->nbr_of_philo)
 		{
-			if ((ft_time(0) - read_valu(&philo[i].lst_eat,
+			if ((ft_time(philo->info->start_time) - read_valu(&philo[i].lst_eat,
 						&philo[i].eat)) >= philo->info->t_to_die)
 			{
 				ft_status(philo);
-				usleep(1300);
 				pthread_mutex_lock(&philo->info->print);
 				printf("%ld %d died\n", ft_time(philo->info->start_time),
 					philo[i].id);
