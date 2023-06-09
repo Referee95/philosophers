@@ -33,6 +33,9 @@ void	philo_sleep(t_philo *philo)
 {
 	ft_print("is sleeping", philo);
 	my_sleep(philo->info->t_to_sleep, philo);
+	pthread_mutex_lock(&philo->eat);
+	philo->nbr_eat++;
+	pthread_mutex_unlock(&philo->eat);
 }
 
 void	philo_eating(t_philo *philo)
@@ -43,7 +46,6 @@ void	philo_eating(t_philo *philo)
 	pthread_mutex_lock(&philo->eat);
 	ft_print("is eating", philo);
 	philo->lst_eat = ft_time(philo->info->start_time);
-	philo->nbr_eat++;
 	pthread_mutex_unlock(&philo->eat);
 	my_sleep(philo->info->t_to_eat, philo);
 	pthread_mutex_unlock(&philo->info->fork[fork_prime]);

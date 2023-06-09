@@ -54,10 +54,8 @@ long	ft_time(long time)
 
 void	ft_print(char *msg, t_philo *philo)
 {
+	pthread_mutex_lock(&philo->info->print);
 	if (!read_valu(&philo->info->status, &philo->info->death))
-	{
-		pthread_mutex_lock(&philo->info->print);
 		printf("%ld %d %s\n", ft_time(philo->info->start_time), philo->id, msg);
-		pthread_mutex_unlock(&philo->info->print);
-	}
+	pthread_mutex_unlock(&philo->info->print);
 }

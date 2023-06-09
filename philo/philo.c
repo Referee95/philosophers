@@ -27,7 +27,8 @@ int	ft_check(char **av, int ac, t_thread *args)
 	else
 		args->nbr_of_t_each_philo_must_eat = -1;
 	if (args->nbr_of_philo <= 0 || args->nbr_of_philo > 200
-		|| args->t_to_die < 60 || args->t_to_eat < 60 || args->t_to_sleep < 60)
+		|| args->t_to_die < 60 || args->t_to_eat < 60 || args->t_to_sleep < 60
+		|| args->nbr_of_t_each_philo_must_eat == 0)
 		return (1);
 	return (0);
 }
