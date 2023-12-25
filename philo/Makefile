@@ -6,7 +6,7 @@
 #    By: ykhalil- <ykhalil-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/05 10:54:36 by ykhalil-          #+#    #+#              #
-#    Updated: 2023/06/09 19:30:16 by ykhalil-         ###   ########.fr        #
+#    Updated: 2023/06/13 11:27:41 by ykhalil-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = routine.c utils.c utils2.c \
 
 CC= cc
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror
 
 OBJS = ${SRCS:.c=.o}
 
